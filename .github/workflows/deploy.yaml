@@ -19,6 +19,7 @@ jobs:
         # shell: script -q -e -c "bash {0}"
         run: |
           space link --id "${{ secrets.PROJECT_ID }}"
+          ls -a
 
       # - name: Push changes to Deta Space
       #   shell: bash
