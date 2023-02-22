@@ -7,6 +7,7 @@ jobs:
   deploy-to-space:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Install Space CLI & set SPACE_ACCESS_TOKEN environment variable
         shell: bash
         run: |
