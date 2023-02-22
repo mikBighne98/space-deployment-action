@@ -1,0 +1,21 @@
+name: Deploy to Space
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  deploy-to-space:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Space CLI & set SPACE_ACCESS_TOKEN environment variable
+        shell: bash
+        run: |
+          curl -fsSL https://get.deta.dev/space-cli.sh | sh
+          echo '/home/runner/.detaspace/bin' >> $GITHUB_PATH
+          echo "SPACE_ACCESS_TOKEN=${{ inputs.access_token }}" >> $GITHUB_ENV
+
+      - name: Push changes to Deta Space
+        shell: bash
+        # shell: script -q -e -c "bash {0}"
+        run: |
+          space push --id "${{ inputs.project_id }}"
