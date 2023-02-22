@@ -17,13 +17,12 @@ jobs:
 
       - name: Link with Space Project
         shell: bash
-        # shell: script -q -e -c "bash {0}"
         run: |
           space link --id "${{ secrets.PROJECT_ID }}"
           ls -a
 
-      # - name: Push changes to Deta Space
-      #   shell: bash
-      #   # shell: script -q -e -c "bash {0}"
-      #   run: |
-      #     space push --id "${{ secrets.PROJECT_ID }}"
+      - name: Push changes to Deta Space
+        shell: bash
+        #   # shell: script -q -e -c "bash {0}"
+        run: |
+          space push
