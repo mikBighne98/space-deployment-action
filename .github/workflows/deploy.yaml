@@ -12,10 +12,16 @@ jobs:
         run: |
           curl -fsSL https://get.deta.dev/space-cli.sh | sh
           echo '/home/runner/.detaspace/bin' >> $GITHUB_PATH
-          echo "SPACE_ACCESS_TOKEN=${{ inputs.access_token }}" >> $GITHUB_ENV
+          echo "SPACE_ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> $GITHUB_ENV
 
-      - name: Push changes to Deta Space
+      - name: Link with Space Project
         shell: bash
         # shell: script -q -e -c "bash {0}"
         run: |
-          space push --id "${{ inputs.project_id }}"
+          space link --id "${{ secrets.PROJECT_ID }}"
+
+      # - name: Push changes to Deta Space
+      #   shell: bash
+      #   # shell: script -q -e -c "bash {0}"
+      #   run: |
+      #     space push --id "${{ secrets.PROJECT_ID }}"
